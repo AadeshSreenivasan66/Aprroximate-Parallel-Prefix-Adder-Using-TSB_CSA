@@ -1,0 +1,11 @@
+module AdaptiveControl(
+    input [31:0] a,
+    input [31:0] b,
+    output use_approx
+);
+    wire [31:0] combined;
+    assign combined = a + b;
+
+    // Use approximation only if combined input > 2147473648
+    assign use_approx = (combined > 32'd2147473648);
+endmodule
