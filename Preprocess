@@ -1,0 +1,9 @@
+module Preprocess(
+    input [31:0] a,
+    input [31:0] b,
+    output [31:0] g,
+    output [31:0] p
+);
+    assign g = a & b;  // generate
+    assign p = a ^ b;  // propagate
+endmodule
