@@ -1,0 +1,14 @@
+module TSB_CSA(
+    input  [31:0] sum_in,
+    input  [31:0] carry_in,
+    output [31:0] sum_out
+);
+
+    genvar i;
+    generate
+        for (i = 0; i < 32; i = i + 1) begin : approx_sum_loop
+            assign sum_out[i] = (carry_in[i] && sum_in[i]) ? 1'b0 : sum_in[i];
+        end
+    endgenerate
+
+endmodule
