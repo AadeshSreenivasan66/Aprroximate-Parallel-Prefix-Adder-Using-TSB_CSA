@@ -1,0 +1,39 @@
+module BrentKungPrefixTree(
+    input [31:0] g,
+    input [31:0] p,
+    output [31:0] carry
+);
+    // Initial carry (Cin) is 0
+    assign carry[0] = 1'b0;
+    assign carry[1] = g[0];
+    assign carry[2] = g[1] | (p[1] & g[0]);
+    assign carry[3] = g[2] | (p[2] & g[1]) | (p[2] & p[1] & g[0]);
+    assign carry[4] = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]);
+    assign carry[5] = g[4] | (p[4] & carry[4]);
+    assign carry[6] = g[5] | (p[5] & carry[5]);
+    assign carry[7] = g[6] | (p[6] & carry[6]);
+	 assign carry[8]  = g[7]  | (p[7]  & carry[7]);
+    assign carry[9]  = g[8]  | (p[8]  & carry[8]);
+    assign carry[10] = g[9]  | (p[9]  & carry[9]);
+    assign carry[11] = g[10] | (p[10] & carry[10]);
+    assign carry[12] = g[11] | (p[11] & carry[11]);
+    assign carry[13] = g[12] | (p[12] & carry[12]);
+    assign carry[14] = g[13] | (p[13] & carry[13]);
+    assign carry[15] = g[14] | (p[14] & carry[14]);
+	 assign carry[16] = g[15] | (p[15] & carry[15]);
+    assign carry[17] = g[16] | (p[16] & carry[16]);
+    assign carry[18] = g[17] | (p[17] & carry[17]);
+    assign carry[19] = g[18] | (p[18] & carry[18]);
+    assign carry[20] = g[19] | (p[19] & carry[19]);
+    assign carry[21] = g[20] | (p[20] & carry[20]);
+    assign carry[22] = g[21] | (p[21] & carry[21]);
+    assign carry[23] = g[22] | (p[22] & carry[22]);
+    assign carry[24] = g[23] | (p[23] & carry[23]);
+    assign carry[25] = g[24] | (p[24] & carry[24]);
+    assign carry[26] = g[25] | (p[25] & carry[25]);
+    assign carry[27] = g[26] | (p[26] & carry[26]);
+    assign carry[28] = g[27] | (p[27] & carry[27]);
+    assign carry[29] = g[28] | (p[28] & carry[28]);
+    assign carry[30] = g[29] | (p[29] & carry[29]);
+    assign carry[31] = g[30] | (p[30] & carry[30]);
+endmodule
