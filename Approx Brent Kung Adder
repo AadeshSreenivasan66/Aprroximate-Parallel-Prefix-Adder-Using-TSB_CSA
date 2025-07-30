@@ -1,0 +1,18 @@
+module ApproxBrentKungAdder(
+    input [31:0] a,
+    input [31:0] b,
+    output [31:0] sum
+);
+    wire [31:0] g, p;
+    wire [31:0] carry_out;
+    wire [31:0] raw_sum;
+    wire [31:0] approx_sum, accurate_sum;
+    wire use_approx;
+    Preprocess pre (.a(a), .b(b), .g(g), .p(p));
+    BrentKungPrefixTree brent_kung (.g(g), .p(p), .carry(carry_out));
+    assign raw_sum = a ^ b;
+    assign accurate_sum = raw_sum ^ carry_out;
+    TSB_CSA tsb (.sum_in(raw_sum), .carry_in(carry_out), .sum_out(approx_sum));
+    AdaptiveControl control (.a(a), .b(b), .use_approx(use_approx));
+    assign sum = use_approx ? approx_sum : accurate_sum;
+endmodule
